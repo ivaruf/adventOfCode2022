@@ -5,8 +5,6 @@ topElf2=0
 topElf3=0
 currentElfCalories=0
 
-placed=false
-
 while read line; do
   # Empty line is new elf
   if [ -z "$line" ]; then
@@ -14,25 +12,16 @@ while read line; do
       topElf3=$topElf2
       topElf2=$topElf
       topElf=$currentElfCalories
-      placed=true
-    fi
-
-    if [ "$currentElfCalories" -gt "$topElf2" ] && [ "$placed" = false ]; then
+    elif [ "$currentElfCalories" -gt "$topElf2" ]; then
       topElf3=$topElf2
       topElf2=$currentElfCalories
-      placed=true
-    fi
-
-    if [ "$currentElfCalories" -gt "$topElf3" ] && [ "$placed" = false ]; then
+    elif [ "$currentElfCalories" -gt "$topElf3" ]; then
       topElf3=$currentElfCalories
     fi
-
     currentElfCalories=0
-    placed=false
   else
     currentElfCalories=$(($currentElfCalories + $line))
   fi
-
 done < calories.txt
 
 echo $topElf
