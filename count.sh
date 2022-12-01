@@ -1,9 +1,6 @@
 #!/bin/bash
 
-topElf=0
-topElf2=0
-topElf3=0
-currentElfCalories=0
+topElf=0 topElf2=0 topElf3=0 currentElfCalories=0
 
 while read line; do
   # Empty line is new elf
@@ -24,8 +21,5 @@ while read line; do
   fi
 done < calories.txt
 
-echo $topElf
-echo $topElf2
-echo $topElf3
-
-echo "Total: $(($topElf + $topElf2 + $topElf3))"
+echo "Top elves:" $topElf $topElf2 $topElf3
+echo "Total:     $(($topElf + $topElf2 + $topElf3))"
