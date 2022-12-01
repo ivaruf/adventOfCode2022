@@ -1,43 +1,42 @@
 #!/bin/bash
 
-# readlines from callsmall.txt
-currentMax=0
-currentMax2=0
-currentMax3=0
-currentTotal=0
+topElf=0
+topElf2=0
+topElf3=0
+currentElfCalories=0
+
 placed=false
+
 while read line; do
   # Empty line is new elf
   if [ -z "$line" ]; then
-    if [ "$currentTotal" -gt "$currentMax" ]; then
-      currentMax3=$currentMax2
-      currentMax2=$currentMax
-      currentMax=$currentTotal
+    if [ "$currentElfCalories" -gt "$topElf" ]; then
+      topElf3=$topElf2
+      topElf2=$topElf
+      topElf=$currentElfCalories
       placed=true
     fi
 
-    if [ "$currentTotal" -gt "$currentMax2" ] && [ "$placed" = false ]; then
-      currentMax3=$currentMax2
-      currentMax2=$currentTotal
+    if [ "$currentElfCalories" -gt "$topElf2" ] && [ "$placed" = false ]; then
+      topElf3=$topElf2
+      topElf2=$currentElfCalories
       placed=true
     fi
 
-    if [ "$currentTotal" -gt "$currentMax3" ] && [ "$placed" = false ]; then
-      currentMax3=$currentTotal
+    if [ "$currentElfCalories" -gt "$topElf3" ] && [ "$placed" = false ]; then
+      topElf3=$currentElfCalories
     fi
 
-    currentTotal=0
+    currentElfCalories=0
     placed=false
   else
-    currentTotal=$(($currentTotal + $line))
+    currentElfCalories=$(($currentElfCalories + $line))
   fi
 
 done < calories.txt
 
-echo $currentMax
-echo $currentMax2
-echo $currentMax3
+echo $topElf
+echo $topElf2
+echo $topElf3
 
-# add currentMax to currentMax2 to currentMax3
-# echo result
-echo "Total: $(($currentMax + $currentMax2 + $currentMax3))"
+echo "Total: $(($topElf + $topElf2 + $topElf3))"
