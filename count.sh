@@ -7,18 +7,15 @@ currentMax3=0
 currentTotal=0
 placed=false
 while read line; do
-  # skip empty line
+  # Empty line is new elf
   if [ -z "$line" ]; then
-    # else if set currentMax to currentTotal if currentTotal is bigger
     if [ "$currentTotal" -gt "$currentMax" ]; then
       currentMax3=$currentMax2
       currentMax2=$currentMax
       currentMax=$currentTotal
-
       placed=true
     fi
 
-    # if currentTotalt is greater than currentMax2 and placed is false
     if [ "$currentTotal" -gt "$currentMax2" ] && [ "$placed" = false ]; then
       currentMax3=$currentMax2
       currentMax2=$currentTotal
@@ -31,10 +28,9 @@ while read line; do
 
     currentTotal=0
     placed=false
-    continue
+  else
+    currentTotal=$(($currentTotal + $line))
   fi
-
-  currentTotal=$(($currentTotal + $line))
 
 done < calories.txt
 
