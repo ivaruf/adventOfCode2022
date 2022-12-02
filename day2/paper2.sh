@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Round 2
+rr="A X" # 4 points
+rp="A Y" # 8 point
+rs="A Z" # 3 point
+
+pr="B X" # 1 point
+pp="B Y" # 5 points
+ps="B Z" # 9 points
+
+sr="C X" # 7 points
+sp="C Y" # 2 point
+ss="C Z" # 6 points
+
+# read input.txt line by line
 points=0
 while read line; do
   #if line is rr
